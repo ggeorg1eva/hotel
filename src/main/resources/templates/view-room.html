@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+</nav>
+
+<!-- upload picture -->
+<!--/*@thymesVar id="pictureAddBindingModel" type="com.example.bookhotel.model.binding.PictureAddBindingModel"*/-->
+<form sec:authorize="hasRole('OPERATOR')" id="add-picture-form" class="w-50 rounded text-white mt-5"
+      th:action="@{/rooms/{id}/addPicture (id = ${room.id})}"
+      th:method="patch" enctype="multipart/form-data"
+      th:object="${pictureAddBindingModel}">
+
+    <div>
+        <p class="text-black">
+            Add a picture to this room:
+        </p>
+    </div>
+
+    <div class="form-group m-2">
+        <label for="picture" class="col-form-label rounded-2 p-2 mb-2 bg-danger">Choose picture</label>
+        <input type="file" th:field="*{picture}"
+               id="picture"
+               class="form-control-file bg-danger"
+               aria-describedby="inputPictureError">
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-danger btn-block w-50" type="submit">Upload picture</button>
+    </div>
+</form>
+
+
+<!--pictures-->
+<div class="row">
+    <div th:each="o : ${room.pictureUrls}" class="col-md-4 mt-2 gx-0 mb-5 mb-lg-0 justify-content-center">
+        <img class="img-fluid" th:src="${o}" alt="blablabla">
+    </div>
+</div>
+<!-- Footer-->
+<footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

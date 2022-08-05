@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+</nav>
+
+<!-- book room form -->
+<div>
+    <!--/*@thymesVar id="roomBookBindingModel" type="com.example.bookhotel.model.binding.RoomBookBindingModel"*/-->
+    <form th:action="@{/rooms/{id}/reserve (id = ${room.id})}" th:method="post" th:object="${roomBookBindingModel}">
+        <div class="form-group">
+            <label class="p-2" for="arrivalDate">Arrival date</label>
+            <input th:field="*{arrivalDate}" type="date" th:errorclass="is-invalid" class="form-control m-2"
+                   id="arrivalDate" placeholder="Date of arrival">
+            <small id="arrivalDateIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+                Date should be in the future
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="p-2" for="departureDate">Departure date</label>
+            <input th:field="*{departureDate}" type="date" th:errorclass="is-invalid" class="form-control m-2"
+                   id="departureDate" placeholder="Date of departure">
+            <small id="departureDateIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+                Date should be in the future
+            </small>
+        </div>
+
+        <input class="btn btn-dark text-white border-black mt-2" type="submit" value="Book">
+    </form>
+</div>
+
+<!-- Footer-->
+<footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

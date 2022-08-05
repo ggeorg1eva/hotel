@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<div>
+    <nav th:replace="fragments/commons::nav">
+    </nav>
+</div>
+<!-- Login form -->
+<div class="container">
+    <form id="my-form" th:method="post"
+          th:action="@{/users/login}">
+        <div class="form-group">
+            <label for="exampleInputUsername1">Username</label>
+            <input th:value="${username}"
+                   name="username"
+                   min="3" max="20" type="text" class="form-control" id="exampleInputUsername1"
+                   aria-describedby="usernameHelp" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input name="password"
+                   min="3"
+                   max="20" type="password" class="form-control" id="exampleInputPassword1"
+                   placeholder="Password">
+        </div>
+        <small th:if="${incorrectInput}" class="alert-danger errors">
+            Wrong username/password.
+        </small>
+
+        <button id="form-btn" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+<!-- Footer-->
+<footer th:replace="fragments/commons::footer" ></footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

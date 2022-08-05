@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+</nav>
+
+<!-- book activity form -->
+<div>
+    <!--/*@thymesVar id="activityBookBindingModel" type="com.example.bookhotel.model.binding.ActivityBookBindingModel"*/-->
+    <form th:action="@{/activities/book/{id} (id = ${dto.id})}" th:method="patch" th:object="${activityBookBindingModel}">
+        <div class="form-group">
+            <label class="p-2" for="people">Number of people</label>
+            <input th:field="*{peopleCount}" type="number" th:errorclass="is-invalid" class="form-control m-2" id="people" placeholder="Number of people">
+            <small id="countIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+                Number of people should be positive
+            </small>
+            <small th:if="${invalidPeopleCount}" class="bg-danger text-light rounded m-2 p-2">
+                You can book for up to <span th:text="${availableSpots}"></span> people
+            </small>
+        </div>
+        <input class="btn btn-dark text-white border-black mt-2" type="submit" value="Book">
+    </form>
+</div>
+
+<!-- Footer-->
+<footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

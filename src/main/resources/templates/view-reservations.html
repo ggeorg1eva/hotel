@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>MyHotel</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- jquery to use for reservations -->
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+    <!-- room reservations js -->
+    <script src="/js/room-reservations.js"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/custom.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+</nav>
+
+<!-- pending reservations table-->
+<table class="table m-2 border border-black" style="width: 40rem;">
+    <caption class="caption-top text-center">Pending reservations</caption>
+    <thead class="thead-dark">
+    <tr class="text-center">
+        <th scope="col">User</th>
+        <th scope="col">Placed on</th>
+        <th scope="col">Room</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-center" th:each="res : ${pending}" th:object="${res}">
+        <td th:text="*{userFullName}"></td>
+        <td th:text="*{dateOfReservation}"></td>
+        <td th:text="*{room.name}"></td>
+        <td>
+            <div sec:authorize="hasRole('OPERATOR')">
+                <form th:action="@{/rooms/reservations/deny/{id} (id = *{dateOfReservation})}" th:method="patch">
+                    <input class="btn btn-danger text-white border-black" type="submit" value="Deny">
+                </form>
+            </div>
+        </td>
+        <td>
+            <div sec:authorize="hasRole('OPERATOR')">
+                <form th:action="@{/rooms/reservations/approve/{id} (id = *{dateOfReservation})}" th:method="patch">
+                    <input class="btn btn-success text-white border-black" type="submit" value="Approve">
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- approved reservations table-->
+<table class="table m-2 border border-black" style="width: 40rem;">
+    <caption class="caption-top text-center">Approved reservations</caption>
+    <thead class="thead-dark">
+    <tr class="text-center">
+        <th scope="col">User</th>
+        <th scope="col">Placed on</th>
+        <th scope="col">Room</th>
+    </tr>
+    </thead>
+    <tbody id="approvedRes">
+    </tbody>
+</table>
+
+<!-- denied reservations table-->
+<table class="table m-2 border border-black" style="width: 40rem;">
+    <caption class="caption-top text-center">Denied reservations</caption>
+    <thead class="thead-dark">
+    <tr class="text-center">
+        <th scope="col">User</th>
+        <th scope="col">Placed on</th>
+        <th scope="col">Room</th>
+    </tr>
+    </thead>
+    <tbody id="deniedRes">
+    </tbody>
+</table>
+
+<!-- Footer-->
+<footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

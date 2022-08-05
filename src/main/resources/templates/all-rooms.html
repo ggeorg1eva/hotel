@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+</nav>
+
+<!-- card items for all rooms-->
+<div class="row">
+    <div th:each="r : ${rooms}" th:object="${r}" class="col-12 col-md-6 m-2 p-2">
+        <div class="card border-secondary mb-3">
+            <img th:unless="${#strings.isEmpty(r.firstPicUrl)}" class="card-img-top" th:src="${r.firstPicUrl}"
+                 alt="Card image cap">
+            <div class="card-body">
+                <h5 th:text="*{name}" class="card-title">Card title</h5>
+                <p class="card-text">
+                    Number of people:
+                    <span th:text="*{numberOfPeople.ordinal() + 1}"></span>
+                </p>
+                <p class="card-text"> Price:
+                    <span th:text="*{price}"></span> lv
+                </p>
+                <p class="card-text"> Area (squared metres):
+                    <span th:text="*{area}"></span>
+                </p>
+                <p class="card-text"> Room amenities:
+                <ul class="list-display list-checkmarks">
+                    <li th:each="a : *{amenities}"
+                        th:value="${a}"
+                        th:text="${a}"></li>
+                </ul>
+                </p>
+                <div class="row">
+                    <!--reserve room -->
+                    <div class="col-12 col-md-4">
+                        <a th:href="@{/rooms/{id}/reserve (id = *{id})}"
+                           class="btn btn-success text-white border-black"
+                           type="submit">Reserve room</a>
+                    </div>
+
+                    <!-- go to page with more pictures -->
+                    <div class="col-12 col-md-4">
+                        <a th:href="@{/rooms/{id} (id = *{id})}" class="btn btn-danger">More pictures</a>
+                    </div>
+                    <!--delete room from db -->
+                    <div class="col-12 col-md-4">
+                        <div sec:authorize="hasRole('OPERATOR')">
+                            <form th:action="@{/rooms/{id}/delete (id = *{id})}" th:method="delete">
+                                <input class="btn btn-dark text-white border-black" type="submit" value="Delete room">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer-->
+<footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>
