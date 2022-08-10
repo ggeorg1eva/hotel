@@ -43,12 +43,15 @@ public class ActivityServiceImpl implements ActivityService {
 
         activity.setCategories(categories);
 
-        String url = pictureService.uploadPictureToCloudinary(model.getPicture());
+        //todo check this because of test changes
+        if (model.getPicture() != null && !model.getPicture().isEmpty()){
+            String url = pictureService.uploadPictureToCloudinary(model.getPicture());
 
-        Picture picture = pictureService.addPictureToDbFromCloudinary(url);
+            Picture picture = pictureService.addPictureToDbFromCloudinary(url);
 
 
-        activity.setPicture(picture);
+            activity.setPicture(picture);
+        }
 
         activityRepository.save(activity);
 
@@ -60,7 +63,12 @@ public class ActivityServiceImpl implements ActivityService {
                 .stream()
                 .map(activity -> {
                     ActivityDto dto = modelMapper.map(activity, ActivityDto.class);
-                    dto.setPictureUrl(activity.getPicture().getPictureUrl());
+                    if (activity.getPicture() != null){
+                        dto.setPictureUrl(activity.getPicture().getPictureUrl());
+                    } else {
+                        dto.setPictureUrl("");
+                    }
+
                     dto.setCategories(activity.getCategories()
                             .stream()
                             .map(ActivityCategory::getName)
@@ -74,8 +82,12 @@ public class ActivityServiceImpl implements ActivityService {
     public void deleteActivity(Long id) throws IOException {
         Activity activity = activityRepository.findById(id).orElse(null);
 
-        if (activity != null){
-            pictureService.deleteSetOfPicsFromCloud(Set.of(activity.getPicture()));
+        if (activity != null) {
+            if (activity.getPicture() != null) {
+                //todo check
+                pictureService.deleteSetOfPicsFromCloud(Set.of(activity.getPicture()));
+            }
+            activityReservationService.deleteAllReservationsByActivity(activity);
             activityRepository.delete(activity);
         }
     }
@@ -86,7 +98,9 @@ public class ActivityServiceImpl implements ActivityService {
 
         ActivityDto dto = modelMapper.map(activity, ActivityDto.class);
 
-        dto.setPictureUrl(activity.getPicture().getPictureUrl());
+        if (activity.getPicture() != null){
+            dto.setPictureUrl(activity.getPicture().getPictureUrl());
+        }
 
         dto.setCategories(activity.getCategories()
                 .stream()
@@ -102,8 +116,9 @@ public class ActivityServiceImpl implements ActivityService {
     public void bookActivity(Long id, String username, Long peopleCount) {
         Activity activity = activityRepository.findById(id).orElse(null);
 
-        if (activity != null){
+        if (activity != null) {
             activity.setAvailableSpots(activity.getAvailableSpots() - peopleCount); //reduce the free spots
+            activityRepository.save(activity);
             activityReservationService.createActivityReservation(activity, username, peopleCount); // make reservation for this activity
         }
     }
@@ -116,9 +131,42 @@ public class ActivityServiceImpl implements ActivityService {
         activities.stream()
                 .forEach(activity -> {
                     activityReservationService.deleteAllReservationsByActivity(activity);
-                    activityRepository.delete(activity);
+                    try {
+                        this.deleteActivity(activity.getId());
+                    } catch (IOException e) {
+                        //exception coming from cloudinary
+                        e.printStackTrace();
+                    }
                 });
 
         return count;
     }
+
+    @Override
+    public void removeCategoryFromActivity(ActivityCategory categoryById) {
+        List<Activity> allActivities = activityRepository.findAll();
+
+        //those which have only the category which will be deleted, will be deleted with it
+                allActivities.stream()
+                .filter(activity -> activity.getCategories().contains(categoryById))
+                .filter(activity -> activity.getCategories().size() == 1)
+                .toList()
+                .forEach(activity -> {
+                    try {
+                        deleteActivity(activity.getId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        // those which have other categories also, will not be deleted but just the category will be removed from them
+        allActivities.stream()
+                .filter(activity -> activity.getCategories().contains(categoryById))
+                .filter(activity -> activity.getCategories().size() > 1)
+                .forEach(activity -> {
+                    activity.getCategories().remove(categoryById);
+                    activityRepository.save(activity);
+                });
+    }
+
 }

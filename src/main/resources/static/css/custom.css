@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 #my-form, #form-btn{
     margin-bottom: 20px;
     margin-top: 20px;
@@ -6,13 +7,75 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Handlee', cursive;
+    background-color: #D1D1DBFF;
 }
 #footer{
     margin-top: auto;
+    position: relative;
 }
 .err-img{
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+.ind-masthead{
+    background: url("/images/background-ind.jpg");
+    background-size: 100% 100%;
+}
+
+.a-ind:hover{
+    background-color: gray;
+}
+#mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.75rem;
+    color: white;
+    border: 1px solid white;
+}
+.nav-link{
+    color: white;
+}
+.nav-link:hover{
+    color: darkgray;
+}
+.projects-section{
+    padding: 10px 0px;
+}
+
+/*login*/
+.login-container{
+    height: 500px;
+}
+#my-form{
+    margin-bottom: 10%;
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+/*register*/
+.register-form{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+/*btn btn-light btn-outline-dark*/
+/*operators*/
+.table-operators{
+    height: 500px;
+}
+
+/*view-reservations room*/
+.tables-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    height: 600px;
+}
+.break{
+    flex-basis: 100%; /* to make first table on 1 row alone */
 }

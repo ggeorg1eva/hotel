@@ -5,6 +5,7 @@ import com.example.bookhotel.model.entity.ActivityCategory;
 import com.example.bookhotel.repository.CategoryRepository;
 import com.example.bookhotel.service.ActivityService;
 import com.example.bookhotel.service.CategoryService;
+import jdk.jfr.Category;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -81,5 +82,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ActivityCategory findCategoryByName(String cat) {
         return categoryRepository.findByName(cat).orElse(null);
+    }
+
+    @Override
+    public ActivityCategory findCategoryById(Long id) {
+        return categoryRepository.findById(id).orElse(null);
     }
 }

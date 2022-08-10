@@ -13,7 +13,7 @@ import java.util.Set;
 @Setter
 public class Activity extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(columnDefinition = "text")
@@ -28,6 +28,6 @@ public class Activity extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Picture picture;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<ActivityCategory> categories;
 }

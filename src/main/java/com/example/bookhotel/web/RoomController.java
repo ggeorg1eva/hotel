@@ -10,8 +10,6 @@ import com.example.bookhotel.model.service.RoomServiceModel;
 import com.example.bookhotel.service.AmenityService;
 import com.example.bookhotel.service.RoomService;
 import org.modelmapper.ModelMapper;
-import org.springframework.core.NestedRuntimeException;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,14 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.security.Principal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -89,8 +83,8 @@ public class RoomController {
     }
 
     @PatchMapping("/{id}/addPicture")
-    public String addPicturePost(@PathVariable Long id, @Valid PictureAddBindingModel pictureAddBindingModel,
-                                 BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
+    public String addPicturePatch(@PathVariable Long id, @Valid PictureAddBindingModel pictureAddBindingModel,
+                                  BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
         if (pictureAddBindingModel.getPicture().getSize() > 1048576){
             throw new MaxUploadSizeExceededException(1048576); // allowed multipart file size is 1 MB
         }
@@ -128,6 +122,7 @@ public class RoomController {
     public RoomBookBindingModel roomBookBindingModel(){
         return new RoomBookBindingModel();
     }
+
     @PostMapping("/{id}/reserve")
     public String bookRoomPost(@Valid RoomBookBindingModel roomBookBindingModel, BindingResult bindingResult,
                                RedirectAttributes redirectAttributes, @PathVariable Long id,

@@ -26,9 +26,9 @@ public class Room extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Picture> pictures;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Amenity> amenities;
 }

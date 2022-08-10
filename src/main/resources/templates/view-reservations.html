@@ -19,9 +19,7 @@
 
     <!-- room reservations js -->
     <script src="/js/room-reservations.js"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/custom.css" rel="stylesheet" />
@@ -31,68 +29,72 @@
 <nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 </nav>
 
-<!-- pending reservations table-->
-<table class="table m-2 border border-black" style="width: 40rem;">
-    <caption class="caption-top text-center">Pending reservations</caption>
-    <thead class="thead-dark">
-    <tr class="text-center">
-        <th scope="col">User</th>
-        <th scope="col">Placed on</th>
-        <th scope="col">Room</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="text-center" th:each="res : ${pending}" th:object="${res}">
-        <td th:text="*{userFullName}"></td>
-        <td th:text="*{dateOfReservation}"></td>
-        <td th:text="*{room.name}"></td>
-        <td>
-            <div sec:authorize="hasRole('OPERATOR')">
-                <form th:action="@{/rooms/reservations/deny/{id} (id = *{dateOfReservation})}" th:method="patch">
-                    <input class="btn btn-danger text-white border-black" type="submit" value="Deny">
-                </form>
-            </div>
-        </td>
-        <td>
-            <div sec:authorize="hasRole('OPERATOR')">
-                <form th:action="@{/rooms/reservations/approve/{id} (id = *{dateOfReservation})}" th:method="patch">
-                    <input class="btn btn-success text-white border-black" type="submit" value="Approve">
-                </form>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="tables-container">
+    <!-- pending reservations table-->
+    <table class="table m-2 border border-black" style="width: 40rem;">
+        <caption class="caption-top text-center">Pending reservations</caption>
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">User</th>
+            <th scope="col">Placed on</th>
+            <th scope="col">Room</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" th:each="res : ${pending}" th:object="${res}">
+            <td th:text="*{userFullName}"></td>
+            <td th:text="*{dateOfReservation}"></td>
+            <td th:text="*{room.name}"></td>
+            <td>
+                <div sec:authorize="hasRole('OPERATOR')">
+                    <form th:action="@{/rooms/reservations/deny/{id} (id = *{dateOfReservation})}" th:method="patch">
+                        <input class="btn btn-danger text-white border-black" type="submit" value="Deny">
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div sec:authorize="hasRole('OPERATOR')">
+                    <form th:action="@{/rooms/reservations/approve/{id} (id = *{dateOfReservation})}" th:method="patch">
+                        <input class="btn btn-success text-white border-black" type="submit" value="Approve">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="break"></div>
 
-<!-- approved reservations table-->
-<table class="table m-2 border border-black" style="width: 40rem;">
-    <caption class="caption-top text-center">Approved reservations</caption>
-    <thead class="thead-dark">
-    <tr class="text-center">
-        <th scope="col">User</th>
-        <th scope="col">Placed on</th>
-        <th scope="col">Room</th>
-    </tr>
-    </thead>
-    <tbody id="approvedRes">
-    </tbody>
-</table>
+    <!-- approved reservations table-->
+    <table class="table m-2 border border-black" style="width: 40rem;">
+        <caption class="caption-top text-center">Approved reservations</caption>
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">User</th>
+            <th scope="col">Placed on</th>
+            <th scope="col">Room</th>
+        </tr>
+        </thead>
+        <tbody id="approvedRes">
+        </tbody>
+    </table>
 
-<!-- denied reservations table-->
-<table class="table m-2 border border-black" style="width: 40rem;">
-    <caption class="caption-top text-center">Denied reservations</caption>
-    <thead class="thead-dark">
-    <tr class="text-center">
-        <th scope="col">User</th>
-        <th scope="col">Placed on</th>
-        <th scope="col">Room</th>
-    </tr>
-    </thead>
-    <tbody id="deniedRes">
-    </tbody>
-</table>
+    <!-- denied reservations table-->
+    <table class="table m-2 border border-black" style="width: 40rem;">
+        <caption class="caption-top text-center">Denied reservations</caption>
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">User</th>
+            <th scope="col">Placed on</th>
+            <th scope="col">Room</th>
+        </tr>
+        </thead>
+        <tbody id="deniedRes">
+        </tbody>
+    </table>
+</div>
+
 
 <!-- Footer-->
 <footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>

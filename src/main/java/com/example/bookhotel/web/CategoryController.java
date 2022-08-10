@@ -1,10 +1,10 @@
 package com.example.bookhotel.web;
 
 import com.example.bookhotel.model.binding.CategoryAddBindingModel;
+import com.example.bookhotel.service.ActivityService;
 import com.example.bookhotel.service.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,12 @@ import javax.validation.Valid;
 @RequestMapping("/categories")
 public class CategoryController {
     private final CategoryService categoryService;
+    private final ActivityService activityService;
     private final ModelMapper modelMapper;
 
-    public CategoryController(CategoryService categoryService, ModelMapper modelMapper) {
+    public CategoryController(CategoryService categoryService, ActivityService activityService, ModelMapper modelMapper) {
         this.categoryService = categoryService;
+        this.activityService = activityService;
         this.modelMapper = modelMapper;
     }
 
@@ -59,10 +61,9 @@ public class CategoryController {
 
     @DeleteMapping("/delete/{id}")
     public String deleteCategory(@PathVariable Long id){
-
+        //if activity has only one category, it is deleted with it; if it has more categories - the one cat, being deleted, is removed
+        activityService.removeCategoryFromActivity(categoryService.findCategoryById(id));
         categoryService.deleteCategory(id);
-
-        //todo add logic when there are activities in this cat
 
         return "redirect:/categories/all";
     }

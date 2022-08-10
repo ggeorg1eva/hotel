@@ -20,7 +20,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         this.activityService = activityService;
     }
 
-        @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void deleteActivitiesWithOlderDatesThanNow() {
         LocalDate now = LocalDate.now();
 

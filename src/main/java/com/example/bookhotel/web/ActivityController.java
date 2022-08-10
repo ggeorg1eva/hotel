@@ -3,7 +3,6 @@ package com.example.bookhotel.web;
 import com.example.bookhotel.model.binding.ActivityAddBindingModel;
 import com.example.bookhotel.model.binding.ActivityBookBindingModel;
 import com.example.bookhotel.model.dto.ActivityDto;
-import com.example.bookhotel.model.entity.User;
 import com.example.bookhotel.model.service.ActivityServiceModel;
 import com.example.bookhotel.service.ActivityService;
 import com.example.bookhotel.service.CategoryService;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/activities")
@@ -87,8 +85,8 @@ public class ActivityController {
     }
 
     @PatchMapping("/book/{id}")
-    public String bookActivityPost(@PathVariable Long id, @Valid ActivityBookBindingModel activityBookBindingModel, BindingResult bindingResult,
-                                   RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) throws IOException {
+    public String bookActivityPatch(@PathVariable Long id, @Valid ActivityBookBindingModel activityBookBindingModel, BindingResult bindingResult,
+                                    RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) throws IOException {
         ActivityDto dto = activityService.getActivityById(id);
         Long availableSpots = dto.getAvailableSpots();
         boolean invalidPeopleCount = availableSpots - activityBookBindingModel.getPeopleCount() < 0;

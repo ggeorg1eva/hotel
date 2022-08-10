@@ -62,6 +62,7 @@ public class ActivityReservationServiceImpl implements ActivityReservationServic
 
     @Override
     public void deleteAllReservationsByActivity(Activity activity) {
-        activityReservationRepository.deleteAll(activityReservationRepository.findAllByActivity(activity));
+        List<ActivityReservation> reservations = activityReservationRepository.findAllByActivity(activity);
+        activityReservationRepository.deleteAll(reservations);
     }
 }

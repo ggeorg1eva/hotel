@@ -28,11 +28,11 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .antMatchers("/rooms/add", "/rooms/delete/{id}", "/categories/add", "/categories/all", "/categories/delete/{id}",
+                        "/activities/add", "/activities/delete/{id}", "/rooms/reservations/all", "/rooms/reservations/deny/{id}", "/rooms/reservations/approve/{id}").hasRole(UserRoleEnum.OPERATOR.name())
+                .antMatchers("/admin/operators", "/admin/guests", "/stats", "/operators/remove-role/{id}").hasRole(UserRoleEnum.ADMIN.name())
                 .antMatchers("/", "/users/login", "/users/register", "/rooms/all",
                         "/reviews/all", "/activities/all", "/rooms/{id}","/contacts").permitAll()
-                .antMatchers("/rooms/add", "/rooms/delete/{id}", "/categories/add", "/categories/all", "/categories/delete/{id}",
-                        "/activities/add", "/activities/delete/{id}", "/rooms/reservations/all").hasRole(UserRoleEnum.OPERATOR.name())
-                .antMatchers("/admin/operators", "/admin/guests", "/stats", "/operators/remove-role/{id}").hasRole(UserRoleEnum.ADMIN.name())
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

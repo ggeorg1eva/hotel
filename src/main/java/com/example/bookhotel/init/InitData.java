@@ -5,13 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InitUsersAndRoles implements CommandLineRunner {
+public class InitData implements CommandLineRunner {
     private final UserService userService;
     private final UserRoleService userRoleService;
     private final CategoryService categoryService;
     private final AmenityService amenityService;
 
-    public InitUsersAndRoles(UserService userService, UserRoleService userRoleService, CategoryService categoryService, AmenityService amenityService ) {
+    public InitData(UserService userService, UserRoleService userRoleService, CategoryService categoryService, AmenityService amenityService ) {
         this.userService = userService;
         this.userRoleService = userRoleService;
         this.categoryService = categoryService;

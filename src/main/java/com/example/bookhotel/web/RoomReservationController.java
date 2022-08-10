@@ -22,9 +22,6 @@ public class RoomReservationController {
     @GetMapping("/rooms/reservations/all")
     public String viewReservations(Model model){
         model.addAttribute("pending", roomReservationService.getAllReservationsByStatus(ReservationStatusEnum.PENDING));
-//        model.addAttribute("approved", roomReservationService.getAllReservationsByStatus(ReservationStatusEnum.APPROVED));
-//        model.addAttribute("denied", roomReservationService.getAllReservationsByStatus(ReservationStatusEnum.DENIED));
-
         return "view-reservations";
     }
 
