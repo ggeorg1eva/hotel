@@ -27,10 +27,8 @@ public class StatsServiceImpl implements StatsService {
             String combination = entry.getKey() + " -> " + entry.getValue();
             list.add(combination);
         }
-        //todo fix this interceptor to be nicer
         return list;
     }
-
 
     private void countRequestsPerUser(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();

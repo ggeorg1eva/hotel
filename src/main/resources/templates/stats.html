@@ -9,8 +9,15 @@
 <nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 </nav>
 
-<div class="text-center"  th:each="n : ${stats}" th:text="${n}"
-     th:value="${n}"></div>
+<div class="stats">
+    <h2>All users who made requests on the website:</h2>
+    <div th:each="n : ${stats}">
+        <h3 class="text-center" th:text="${n}"
+            th:value="${n}">
+        </h3>
+        <hr>
+    </div>
+</div>
 
 <!-- Footer-->
 <footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>

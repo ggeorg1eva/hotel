@@ -63,7 +63,6 @@
                     </div>
                     <div class="col-6 mb-3">
                         <h6>Room reservations</h6>
-                        <!-- todo add logic for room reservations-->
                         <div th:each="roomRes : ${roomReservations}">
                             <p th:text="|Dates: ${roomRes.arrivalDate} - ${roomRes.departureDate}|"
                                class="text-muted"></p>

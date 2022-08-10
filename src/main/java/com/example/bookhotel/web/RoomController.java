@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -128,9 +129,13 @@ public class RoomController {
                                RedirectAttributes redirectAttributes, @PathVariable Long id,
                                @AuthenticationPrincipal UserDetails principal){
         if (bindingResult.hasErrors()){
-            //todo departure date should be after arrival
             redirectAttributes.addFlashAttribute("roomBookBindingModel", roomBookBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.roomBookBindingModel", bindingResult);
+            return "redirect:/rooms/{id}/reserve";
+        }
+
+        if (roomBookBindingModel.getDepartureDate().isBefore(roomBookBindingModel.getArrivalDate())){
+            redirectAttributes.addFlashAttribute("arrivalAfterDepartDate", true);
             return "redirect:/rooms/{id}/reserve";
         }
 

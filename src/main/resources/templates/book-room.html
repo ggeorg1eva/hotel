@@ -13,6 +13,9 @@
 <div class="book-room-container">
     <!--/*@thymesVar id="roomBookBindingModel" type="com.example.bookhotel.model.binding.RoomBookBindingModel"*/-->
     <form th:action="@{/rooms/{id}/reserve (id = ${room.id})}" th:method="post" th:object="${roomBookBindingModel}" class="book-room-form">
+
+        <small th:if="${arrivalAfterDepartDate}" class="bg-danger text-light rounded m-2 p-2">Your arrival date
+        should be before your departure date</small>
         <div class="form-group">
             <label class="p-2" for="arrivalDate">Arrival date</label>
             <input th:field="*{arrivalDate}" type="date" th:errorclass="is-invalid" class="form-control m-2"

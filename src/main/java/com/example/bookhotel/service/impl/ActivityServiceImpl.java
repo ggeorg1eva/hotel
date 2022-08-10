@@ -43,7 +43,6 @@ public class ActivityServiceImpl implements ActivityService {
 
         activity.setCategories(categories);
 
-        //todo check this because of test changes
         if (model.getPicture() != null && !model.getPicture().isEmpty()){
             String url = pictureService.uploadPictureToCloudinary(model.getPicture());
 
@@ -84,7 +83,6 @@ public class ActivityServiceImpl implements ActivityService {
 
         if (activity != null) {
             if (activity.getPicture() != null) {
-                //todo check
                 pictureService.deleteSetOfPicsFromCloud(Set.of(activity.getPicture()));
             }
             activityReservationService.deleteAllReservationsByActivity(activity);
