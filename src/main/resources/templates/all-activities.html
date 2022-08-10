@@ -34,19 +34,19 @@
                 </p>
 
                 <div class="row">
-                    <div th:unless="*{availableSpots <= 0}" class="col-12 col-md-6">
+                    <div th:unless="*{availableSpots <= 0}" class="col-12 col-md-4">
                         <a th:href="@{/activities/book/{id} (id = *{id})}"
                            class="btn btn-success text-white border-black" type="submit" value="Book activity">Book
                             activity</a>
                     </div>
-                    <div th:if="*{availableSpots <= 0}" class="col-12 col-md-6">
+                    <div th:if="*{availableSpots <= 0}" class="col-12 col-md-4">
                         <a href="/contacts"
                            class="btn btn-success text-white border-black" value="info">Get in touch to learn about the next available dates</a>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <div sec:authorize="hasRole('OPERATOR')">
                             <form th:action="@{/activities/delete/{id} (id = *{id})}" th:method="delete">
-                                <input class="btn btn-danger text-white border-black" type="submit"
+                                <input class="btn btn-black text-white border-black" type="submit"
                                        value="Delete activity">
                             </form>
                         </div>

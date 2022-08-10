@@ -9,7 +9,8 @@ import javax.validation.constraints.Positive;
 @Getter
 @Setter
 public class ActivityBookBindingModel {
-    @Positive
+
     @NotNull
+    @Positive
     private Long peopleCount;
 }

@@ -11,57 +11,62 @@
 
 <!-- add activity form -->
 <!--/*@thymesVar id="activityAddBindingModel" type="com.example.bookhotel.model.binding.ActivityAddBindingModel"*/-->
-<form th:action="@{/activities/add}" th:method="post" th:object="${activityAddBindingModel}" enctype="multipart/form-data" class="mt-3">
-  <div class="form-group">
-    <label class="p-2" for="name">Name</label>
-    <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control m-2" id="name" placeholder="Name">
-    <small id="nameIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
-      Activity name must be between 3 and 30 characters long
-    </small>
-  </div>
-  <div class="form-group">
-    <label class="p-2" for="availableSpots">Available spots</label>
-    <input th:field="*{availableSpots}" type="number" th:errorclass="is-invalid" class="form-control m-2" id="availableSpots" placeholder="Available spots">
-    <small id="availableSpotsIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
-      Number should be positive
-    </small>
-  </div>
-  <div class="form-group">
-    <label class="p-2" for="description">Description</label>
-    <input th:field="*{description}" type="text" th:errorclass="is-invalid" class="form-control m-2" id="description" placeholder="Description">
-    <small id="descriptionIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
-      Description should be more than 5 characters long
-    </small>
-  </div>
-  <div class="form-group">
-    <label class="p-2" for="date">Date</label>
-    <input th:field="*{date}" type="date" th:errorclass="is-invalid" class="form-control m-2" id="date" placeholder="Date">
-    <small id="dateIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
-      Date should be in the future
-    </small>
-  </div>
-  <div class="form-group">
-    <label class="p-2" for="categories">Activity categories:</label>
-    <br>
-    <input th:field="*{categories}"
-           th:each="c : ${categoriesView}"
-           class="m-3" type="checkbox" name="categories" id="categories"
-           th:value="${c.name}" th:text="${c.name}">
-    <br>
-  </div>
+<form th:action="@{/activities/add}" th:method="post" th:object="${activityAddBindingModel}"
+      enctype="multipart/form-data" class="mt-3 add-activity-form">
+    <div class="form-group">
+        <label class="p-2" for="name">Name</label>
+        <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control m-2" id="name"
+               placeholder="Name">
+        <small id="nameIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+            Activity name must be between 3 and 30 characters long
+        </small>
+    </div>
+    <div class="form-group">
+        <label class="p-2" for="availableSpots">Available spots</label>
+        <input th:field="*{availableSpots}" type="number" th:errorclass="is-invalid" class="form-control m-2"
+               id="availableSpots" placeholder="Available spots">
+        <small id="availableSpotsIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+            Number should be positive
+        </small>
+    </div>
+    <div class="form-group">
+        <label class="p-2" for="description">Description</label>
+        <input th:field="*{description}" type="text" th:errorclass="is-invalid" class="form-control m-2"
+               id="description" placeholder="Description">
+        <small id="descriptionIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+            Description should be more than 5 characters long
+        </small>
+    </div>
+    <div class="form-group">
+        <label class="p-2" for="date">Date</label>
+        <input th:field="*{date}" type="date" th:errorclass="is-invalid" class="form-control m-2" id="date"
+               placeholder="Date">
+        <small id="dateIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+            Date should be in the future
+        </small>
+    </div>
+    <div class="form-group">
+        <label class="p-2" for="categories">Activity categories:</label>
+        <br>
+        <input th:field="*{categories}"
+               th:each="c : ${categoriesView}"
+               class="m-3" type="checkbox" name="categories" id="categories"
+               th:value="${c.name}" th:text="${c.name}">
+        <br>
+    </div>
 
 
-  <div class="form-group m-2">
-    <label for="picture" class="col-form-label rounded-2 p-2 mb-2 bg-danger">Add a picture</label>
-    <input type="file" th:field="*{picture}"
-           id="picture"
-           class="form-control-file bg-danger"
-           aria-describedby="inputPictureError">
-  </div>
+    <div class="form-group m-2">
+        <label for="picture" class="col-form-label rounded-2 p-2 mb-2 bg-light">Add a picture</label>
+        <input type="file" th:field="*{picture}"
+               id="picture"
+               class="form-control-file bg-light"
+               aria-describedby="inputPictureError">
+    </div>
 
-  <div class="d-flex justify-content-center m-2">
-    <button type="submit" class="btn btn-danger">Add activity</button>
-  </div>
+    <div class="d-flex justify-content-center m-2">
+        <button type="submit" class="btn btn-light btn-outline-dark">Add activity</button>
+    </div>
 </form>
 
 <!-- Footer-->

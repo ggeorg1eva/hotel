@@ -9,36 +9,35 @@
 <nav th:replace="fragments/commons::nav" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 </nav>
 
-<!-- upload picture -->
-<!--/*@thymesVar id="pictureAddBindingModel" type="com.example.bookhotel.model.binding.PictureAddBindingModel"*/-->
-<form sec:authorize="hasRole('OPERATOR')" id="add-picture-form" class="w-50 rounded text-white mt-5"
-      th:action="@{/rooms/{id}/addPicture (id = ${room.id})}"
-      th:method="patch" enctype="multipart/form-data"
-      th:object="${pictureAddBindingModel}">
+<div class="upload-pic">
+    <!-- upload picture -->
+    <h3 class="text-black">
+        Add a picture to this room:
+    </h3>
+    <!--/*@thymesVar id="pictureAddBindingModel" type="com.example.bookhotel.model.binding.PictureAddBindingModel"*/-->
+    <form sec:authorize="hasRole('OPERATOR')" id="add-picture-form" class="w-50 rounded text-white"
+          th:action="@{/rooms/{id}/addPicture (id = ${room.id})}"
+          th:method="patch" enctype="multipart/form-data"
+          th:object="${pictureAddBindingModel}">
 
-    <div>
-        <p class="text-black">
-            Add a picture to this room:
-        </p>
-    </div>
 
-    <div class="form-group m-2">
-        <label for="picture" class="col-form-label rounded-2 p-2 mb-2 bg-danger">Choose picture</label>
-        <input type="file" th:field="*{picture}"
-               id="picture"
-               class="form-control-file bg-danger"
-               aria-describedby="inputPictureError">
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-danger btn-block w-50" type="submit">Upload picture</button>
-    </div>
-</form>
-
+        <div class="form-group mt-2 mb-2">
+            <!--<label for="picture" class="col-form-label rounded-2 p-2 mb-2 bg-danger">Choose picture</label>-->
+            <input type="file" th:field="*{picture}"
+                   id="picture"
+                   class="form-control-file"
+                   aria-describedby="inputPictureError">
+        </div>
+        <div class="d-flex justify-content-center m-2">
+            <button type="submit" class="btn btn-light btn-outline-dark">Upload picture</button>
+        </div>
+    </form>
+</div>
 
 <!--pictures-->
-<div class="row">
+<div class="pic-container">
     <div th:each="o : ${room.pictureUrls}" class="col-md-4 mt-2 gx-0 mb-5 mb-lg-0 justify-content-center">
-        <img class="img-fluid" th:src="${o}" alt="blablabla">
+        <img class="img-fluid pic-in-room" th:src="${o}" alt="room pic">
     </div>
 </div>
 <!-- Footer-->

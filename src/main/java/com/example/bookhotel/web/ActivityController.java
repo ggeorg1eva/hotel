@@ -89,7 +89,11 @@ public class ActivityController {
                                     RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails principal) throws IOException {
         ActivityDto dto = activityService.getActivityById(id);
         Long availableSpots = dto.getAvailableSpots();
-        boolean invalidPeopleCount = availableSpots - activityBookBindingModel.getPeopleCount() < 0;
+        boolean invalidPeopleCount = false;
+
+        if (activityBookBindingModel.getPeopleCount() != null && activityBookBindingModel.getPeopleCount() > 0) {
+            invalidPeopleCount = availableSpots - activityBookBindingModel.getPeopleCount() < 0;
+        }
 
         if (bindingResult.hasErrors() || invalidPeopleCount) {
             redirectAttributes.addFlashAttribute("activityBookBindingModel", activityBookBindingModel);

@@ -10,7 +10,7 @@
 </nav>
 
 <!-- Categories table -->
-<table class="table m-2" style="width: 40rem;">
+<table class="table m-2 table-categories" style="width: 40rem;">
     <thead class="thead-dark">
     <tr class="text-center">
         <th scope="col">Category name</th>
@@ -24,7 +24,7 @@
         <td>
             <div sec:authorize="hasRole('OPERATOR')">
                 <form th:action="@{/categories/delete/{id} (id = *{id})}" th:method="delete">
-                    <input class="btn btn-danger text-white border-black" type="submit" value="Delete">
+                    <input class="btn btn-light btn-outline-dark" type="submit" value="Delete">
                 </form>
             </div>
         </td>

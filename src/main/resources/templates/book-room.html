@@ -10,9 +10,9 @@
 </nav>
 
 <!-- book room form -->
-<div>
+<div class="book-room-container">
     <!--/*@thymesVar id="roomBookBindingModel" type="com.example.bookhotel.model.binding.RoomBookBindingModel"*/-->
-    <form th:action="@{/rooms/{id}/reserve (id = ${room.id})}" th:method="post" th:object="${roomBookBindingModel}">
+    <form th:action="@{/rooms/{id}/reserve (id = ${room.id})}" th:method="post" th:object="${roomBookBindingModel}" class="book-room-form">
         <div class="form-group">
             <label class="p-2" for="arrivalDate">Arrival date</label>
             <input th:field="*{arrivalDate}" type="date" th:errorclass="is-invalid" class="form-control m-2"
@@ -30,7 +30,10 @@
             </small>
         </div>
 
-        <input class="btn btn-dark text-white border-black mt-2" type="submit" value="Book">
+        <div class="d-flex justify-content-center m-2">
+            <button type="submit" class="btn btn-light btn-outline-dark">Book</button>
+        </div>
+
     </form>
 </div>
 

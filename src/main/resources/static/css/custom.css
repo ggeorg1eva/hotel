@@ -1,55 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
-#my-form, #form-btn{
+
+#my-form, #form-btn {
     margin-bottom: 20px;
     margin-top: 20px;
 }
-body{
+
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: 'Handlee', cursive;
     background-color: #D1D1DBFF;
 }
-#footer{
+
+#footer {
     margin-top: auto;
     position: relative;
 }
-.err-img{
+
+.err-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
 
-.ind-masthead{
+.ind-masthead {
     background: url("/images/background-ind.jpg");
     background-size: 100% 100%;
 }
 
-.a-ind:hover{
+.a-ind:hover {
     background-color: gray;
 }
+
 #mainNav .navbar-toggler {
     font-size: 80%;
     padding: 0.75rem;
     color: white;
     border: 1px solid white;
 }
-.nav-link{
+
+.nav-link {
     color: white;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     color: darkgray;
 }
-.projects-section{
+
+.projects-section {
     padding: 10px 0px;
 }
 
 /*login*/
-.login-container{
+.login-container {
     height: 500px;
 }
-#my-form{
+
+#my-form {
     margin-bottom: 10%;
     margin-top: 10%;
     margin-left: 25%;
@@ -57,18 +66,18 @@ body{
 }
 
 /*register*/
-.register-form{
+.register-form {
     margin-left: 25%;
     margin-right: 25%;
 }
-/*btn btn-light btn-outline-dark*/
+
 /*operators*/
-.table-operators{
+.table-operators {
     height: 500px;
 }
 
 /*view-reservations room*/
-.tables-container{
+.tables-container {
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
@@ -76,6 +85,105 @@ body{
     justify-content: space-evenly;
     height: 600px;
 }
-.break{
+
+.break {
     flex-basis: 100%; /* to make first table on 1 row alone */
+}
+
+/*add room*/
+.add-room-form {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+/*view room, add pic to room*/
+.upload-pic {
+    margin: 10px 25%;
+    padding: 15px;
+    border: 3px solid black;
+
+}
+
+.upload-pic h3 {
+    text-align: center;
+}
+
+.upload-pic form {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.pic-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.pic-in-room {
+    width: 100%;
+    height: 100%;
+}
+
+/*book room*/
+.book-room-form {
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 500px;
+}
+
+/*book activity*/
+.activity-book-form {
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 500px;
+}
+
+/*view activity categories*/
+.table-categories {
+    height: 500px;
+}
+
+/*add activity*/
+.add-activity-form {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+/*add activity category*/
+.category-add-form {
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 500px;
+}
+
+/*user profile*/
+.profile-card {
+    border-radius: .5rem;
+    margin: 5%;
+}
+
+.profile-img {
+    width: 150px;
+}
+
+.p-info {
+    padding: 2.5rem;
+}
+
+.p-info h6{
+    font-weight: bold;
+}
+#profile-card-gradient {
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+}
+
+/*contacts*/
+.contact-section{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    height: 600px;
 }
