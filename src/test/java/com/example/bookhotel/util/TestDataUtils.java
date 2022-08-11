@@ -71,7 +71,7 @@ public class TestDataUtils {
 
     }
 
-    public void createOperator() {
+    public User createOperator() {
         this.initUserRoles();
         User user = new User();
         user.setUsername("test-operator");
@@ -82,10 +82,10 @@ public class TestDataUtils {
         user.setEmail("toperator@gmail.com");
         user.setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.OPERATOR)));
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
-    public void createAdmin() {
+    public User createAdmin() {
         this.initUserRoles();
         User user = new User();
         user.setUsername("test-admin");
@@ -97,7 +97,7 @@ public class TestDataUtils {
         user.setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.OPERATOR),
                 userRoleRepository.findByRole(UserRoleEnum.ADMIN)));
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void initCategories() {
