@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
         user.setAge(35);
         user.setPassword(passwordEncoder.encode("1234"));
         user.setEmail("operator@gmail.com");
-        user.setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.OPERATOR)));
+        user.setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.OPERATOR), userRoleRepository.findByRole(UserRoleEnum.USER)));
 
         userRepository.save(user);
     }

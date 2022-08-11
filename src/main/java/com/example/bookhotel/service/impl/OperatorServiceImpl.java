@@ -44,12 +44,10 @@ public class OperatorServiceImpl implements OperatorService {
 
         UserRole operatorRole = userRoleRepository.findByRole(UserRoleEnum.OPERATOR);
 
-
         if (user != null){
             user.getRoles().remove(operatorRole);
             userRepository.save(user);
         }
-
     }
 
 }
