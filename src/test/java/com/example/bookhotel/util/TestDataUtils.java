@@ -121,6 +121,7 @@ public class TestDataUtils {
         initCategories();
         Activity activity = new Activity();
         activity.setAvailableSpots(3L);
+        activity.setPrice(BigDecimal.valueOf(12.5));
         activity.setName("activity test");
         activity.setDate(LocalDate.of(2022, 9, 9));
         activity.setDescription("test");
@@ -134,6 +135,7 @@ public class TestDataUtils {
         Activity activity = new Activity();
         activity.setAvailableSpots(3L);
         activity.setName("activity test2");
+        activity.setPrice(BigDecimal.valueOf(12.5));
         activity.setDate(LocalDate.of(2022, 9, 9));
         activity.setDescription("test");
         activity.setCategories(Set.of(category));

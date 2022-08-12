@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;

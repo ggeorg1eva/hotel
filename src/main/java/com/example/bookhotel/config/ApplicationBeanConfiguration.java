@@ -21,9 +21,9 @@ public class ApplicationBeanConfiguration {
     @Bean
     public Cloudinary cloudinary(){
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "####",
-                "api_key", "####",
-                "api_secret", "####"));
+                "cloud_name", "ggeorgieva",
+                "api_key", "237187435455454",
+                "api_secret", "8mhXiV0ZhBKhZKOXqOfLwet62Dk"));
 
         SingletonManager manager = new SingletonManager();
         manager.setCloudinary(cloudinary);

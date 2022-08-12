@@ -93,6 +93,7 @@ public class ActivityControllerIT {
     public void testAddActivityPost_WithCorrectData_Successful() throws Exception {
         mockMvc.perform(post("/activities/add")
                         .param("name", "activityTest")
+                        .param("price", "22.50")
                         .param("description", "blablabla")
                         .param("availableSpots", "4")
                         .param("date", "2022-09-25")
