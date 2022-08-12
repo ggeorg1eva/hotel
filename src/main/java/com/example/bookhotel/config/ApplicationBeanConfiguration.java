@@ -24,6 +24,7 @@ public class ApplicationBeanConfiguration {
                 "cloud_name", "####",
                 "api_key", "####",
                 "api_secret", "####"));
+
         SingletonManager manager = new SingletonManager();
         manager.setCloudinary(cloudinary);
         manager.init();

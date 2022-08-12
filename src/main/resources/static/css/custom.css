@@ -199,3 +199,14 @@ body {
 .stats > div{
     margin-top: 20px;
 }
+
+/*error pages*/
+.err-link{
+    color: black;
+    text-decoration: none;
+}
+
+.err-link:hover{
+    color: white;
+    text-decoration: none;
+}

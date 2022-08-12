@@ -22,6 +22,14 @@
         </small>
     </div>
     <div class="form-group">
+        <label class="p-2" for="price">Price</label>
+        <input th:field="*{price}" th:errorclass="is-invalid" type="text" class="form-control m-2" id="price"
+               placeholder="Price">
+        <small id="priceIncorrect" class="invalid-feedback bg-danger text-light rounded m-2 p-2">
+            Price should be a positive number
+        </small>
+    </div>
+    <div class="form-group">
         <label class="p-2" for="availableSpots">Available spots</label>
         <input th:field="*{availableSpots}" type="number" th:errorclass="is-invalid" class="form-control m-2"
                id="availableSpots" placeholder="Available spots">

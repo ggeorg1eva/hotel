@@ -34,22 +34,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class RoomControllerIT {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    TestDataUtils utils;
+    private TestDataUtils utils;
 
     @Autowired
-    RoomRepository roomRepository;
+    private RoomRepository roomRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    AmenityRepository amenityRepository;
+    private AmenityRepository amenityRepository;
 
     @Autowired
-    RoomReservationRepository roomReservationRepository;
+    private RoomReservationRepository roomReservationRepository;
 
     private User testUser;
 

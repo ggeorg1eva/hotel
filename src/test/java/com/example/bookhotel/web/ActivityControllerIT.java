@@ -30,19 +30,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ActivityControllerIT {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    TestDataUtils utils;
+    private TestDataUtils utils;
 
     @Autowired
-    ActivityRepository activityRepository;
+    private ActivityRepository activityRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    ActivityReservationRepository activityReservationRepository;
+    private ActivityReservationRepository activityReservationRepository;
 
     private Activity testActivity;
     private ActivityReservation activityReservation;

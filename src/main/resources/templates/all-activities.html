@@ -17,7 +17,8 @@
                  alt="Card image cap">
             <div class="card-body">
                 <h5 th:text="*{name}" class="card-title">Card title</h5>
-                <p class="card-text" th:unless="*{availableSpots <= 0}" th:text="*{availableSpots}"></p>
+                <p class="card-text"> Price: <span th:text="*{price}"></span> lv</p>
+                <p class="card-text" th:unless="*{availableSpots <= 0}" th:text="|Available spots: *{availableSpots}|"></p>
                 <p class="card-text" th:if="*{availableSpots <= 0}">No free spots! All booked</p>
                 <p class="card-text"> Date: <span th:text="*{date}"></span></p>
 

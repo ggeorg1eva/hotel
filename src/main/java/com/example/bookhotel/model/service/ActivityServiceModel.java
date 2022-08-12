@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -14,6 +15,8 @@ public class ActivityServiceModel {
     private String name;
 
     private String description;
+
+    private BigDecimal price;
 
     private Long availableSpots;
 

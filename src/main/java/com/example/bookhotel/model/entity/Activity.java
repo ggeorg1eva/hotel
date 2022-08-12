@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -15,6 +16,9 @@ public class Activity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false)
+    private BigDecimal price;
 
     @Column(columnDefinition = "text")
     private String description;

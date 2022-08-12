@@ -15,8 +15,11 @@
     <h3 th:text="${error}" class="text-danger fst-italic"></h3>
 </div>
 
-<a href="/" class="btn btn-danger text-white border-black text-decoration-none w-25" type="submit" value="Go back">Go back</a>
-
+<div class="d-flex justify-content-center m-2">
+    <button type="submit" class="btn btn-light btn-outline-dark">
+        <a href="/" class="err-link">Go back</a>
+    </button>
+</div>
 
 <!-- Footer-->
 <footer th:replace="fragments/commons::footer" class="footer bg-black small text-center text-white-50"></footer>

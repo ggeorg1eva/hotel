@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -18,6 +19,10 @@ public class ActivityAddBindingModel {
     @NotBlank
     @Size(min = 3, max = 30)
     private String name;
+
+    @NotNull
+    @Positive
+    private BigDecimal price;
 
     @NotNull
     @Size(min = 5)
